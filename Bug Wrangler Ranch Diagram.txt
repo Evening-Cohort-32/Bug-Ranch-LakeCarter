@@ -1,0 +1,44 @@
+title Bug Wrangler Ranch
+participant database.js
+participant main.js
+participant cattle.js
+participant drover.js
+participant journey.js
+participantspacing 5
+
+main.js->cattle.js: Imports {roundup}
+main.js<--cattle.js: Exports {roundup}
+main.js->drover.js: Imports {hireDrovers}
+main.js<--drover.js: Exports {hireDrovers}
+main.js->journey.js: Imports {journeyMaker}
+main.js<--journey.js: Exports {journeyMaker}
+space 
+loop
+main.js->(1)drover.js: invokes function hireDrovers() to get the drovers for the current cattle drive
+main.js<--drover.js: Returns array of the drovers
+end
+
+loop
+main.js->(1)cattle.js: invokes function roundup() to get the cattle for the drive
+main.js<--cattle.js: Returns array of the cattle
+end
+
+loop
+main.js->(1)journey.js: invokes function journeyMaker()to get the terrain for this drive 
+main.js<--journey.js: Returns array of the terrain
+end
+
+note over main.js: Console log starts
+note over main.js: Number of participating drover and total cattle to drive is displayed
+
+loop
+note over main.js: Breed of each cow in the cattle array is displayed
+end
+
+loop
+note over main.js: First and last name of each drover in the drovers array is displayed
+end
+
+loop
+note over main.js: Each terrain of the journey array is displayed
+end
